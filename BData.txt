@@ -15,3 +15,5 @@
 82424|PENTAGON VILLA|TR puram, chennai|N|$
 31209|PERL 2BHK|MG Road, Delhi|Y|$
 21890|PVR HOUSE|Tr puram, Chennai|Y|$
+br2024|MARUTI|800|Y|$
+2024|MARUTI|800|Y|$

@@ -16,19 +16,18 @@ def login_in():
 	login_menu=Tk()
 	#login_menu.configure(bg="plum1")
 	login_menu.wm_title("Login")
-	login_menu.geometry('800x500')
+	login_menu.geometry('700x500')
 	login_menu.configure(background='#AFEEEE')
 	login_menu.resizable(True,True)
 	k_font = tkinter.font.Font(family='Times new roman', size=16, weight=tkinter.font.BOLD)
-	orionLabel=Label(login_menu, text="DriveEase: Car Rental Management System",bg='#AFEEEE',font=("Castellar", "23","bold","italic","underline"),fg="black")
-	subLabel=Label(login_menu, text="BY NAS2 TEAM",bg='#AFEEEE',font=("Castellar", "16","bold","italic"))
+	orionLabel=Label(login_menu, text="DriveEase: Car Rental Management System",bg='#AFEEEE',font=("Castellar", "16","bold","italic"),fg="black")
+	subLabel=Label(login_menu, text="BY NAS2 TEAM",bg='#AFEEEE',font=("Castellar", "14","bold"))
 	id_label=Label(login_menu,text="Enter Your ID:",height=3, bg='#AFEEEE',font=k_font)
 	password_label=Label(login_menu,text="Enter Password:",height=3,bg='#AFEEEE',font=k_font)
 	id_input_login=Entry(login_menu, width=30)
 	password_input_login=Entry(login_menu, width=30)
 	loginbutton1=Button(login_menu,command=login_check,text=" Login ",bg='#89CFF0',height='1',width='8', font=k_font,  bd = '5')
 	registerbutton=Button(login_menu,command=register_in,text=" Register ",bg='#006A4E',fg='white',height='2',width='10',font=k_font, bd = '5',)
-	#feedbackbutton=Button(login_menu,command=feedback_read,text=" Feedback ",bg='yellow',height='2',width='11',font=k_font, bd = '5')
 	adminbutton=Button(login_menu,command=admin_in,text=" Admin Login ",bg='#F0FFFF', fg='black',height='2',width='10',font=k_font, bd = '5')
 	password_input_login.config(show="*")
 
@@ -41,8 +40,6 @@ def login_in():
 	loginbutton1.place(x=30,y=240)
 	registerbutton.place(x=500,y=150)
 	adminbutton.place(x=500,y=230)
-	#feedbackbutton.place(x=500,y=310)
-
 	login_menu.mainloop()
 
 def login_check():
@@ -215,7 +212,7 @@ def Admin_Opt():
 		k_font = tkinter.font.Font(family='Times new roman', size=10, weight=tkinter.font.BOLD)
 
 		addbutton=Button(opt_menu,command=add_car,text=" Add Cars ",bg='light green',height=1,width=16,font=k_font)
-		delbutton=Button(opt_menu,command=del_book,text=" Remove property ",bg='pink',height=1,width=12,font=k_font)
+		delbutton=Button(opt_menu,command=del_car,text=" Remove property ",bg='pink',height=1,width=12,font=k_font)
 		backbutton=Button(opt_menu,command=reopen_login,text=" Log out ",bg='light blue',height=1,width=12,font=k_font)
 
 		addbutton.grid(row=4,column=4)
@@ -281,9 +278,9 @@ def binary_search(fname, search_key):
 
 
 def add_car():
-	global book_id
-	global book_name
-	global author_name
+	global car_id
+	global car_company
+	global car_model
 	global add_menu
 
 	add_menu=Tk()
@@ -292,37 +289,37 @@ def add_car():
 	add_menu.resizable(0,0)
 	k_font = tkinter.font.Font(family='Times new roman', size=10, weight=tkinter.font.BOLD)
 
-	book_id_label=Label(add_menu,text="Car Reg. Number")
-	book_label=Label(add_menu,font=k_font, text="Company")
-	author_label=Label(add_menu,font=k_font, text="Model")
-	book_id=Entry(add_menu, width=30)
-	book_name=Entry(add_menu, width=30)
-	author_name=Entry(add_menu, width=30)
+	car_reg_no=Label(add_menu,text="Car Reg. Number")
+	car_comp=Label(add_menu,font=k_font, text="Company")
+	car_mod=Label(add_menu,font=k_font, text="Model")
+	car_id=Entry(add_menu, width=30)
+	car_company=Entry(add_menu, width=30)
+	car_model=Entry(add_menu, width=30)
 	addbutton1=Button(add_menu,command=add_check,text=" Add Car ",bg='yellow',height=1,width=10,font=k_font)
 
-	book_id_label.grid(row=1,sticky=E)
-	book_id.grid(row=1,column=1)
-	book_label.grid(row=2,sticky=E)
-	book_name.grid(row=2,column=1)
-	author_label.grid(row=3,sticky=E)
-	author_name.grid(row=3,column=1)
+	car_reg_no.grid(row=1,sticky=E)
+	car_id.grid(row=1,column=1)
+	car_comp.grid(row=2,sticky=E)
+	car_company.grid(row=2,column=1)
+	car_mod.grid(row=3,sticky=E)
+	car_model.grid(row=3,column=1)
 	addbutton1.place(x=140, y=100)
 
 	add_menu.mainloop()
 
 def add_check():
 	global b_id
-	b_id=book_id.get()
-	b_name=book_name.get().upper()
-	a_id=author_name.get()
+	b_id=car_id.get()
+	b_name=car_company.get().upper()
+	a_id=car_model.get()
 
 	if len(b_name)==0:
-		tkinter.messagebox.showinfo("Add Property","You did not type a property name O_O")
+		tkinter.messagebox.showinfo("Add Car","You did not type a car registration number O_O")
 		add_menu.lift()
 		return(add_car)
 
-	if len(b_id)!=5 or b_id.isdigit()==False:
-		tkinter.messagebox.showinfo("Add property","Please renter the details(ID should be 5 positive integers)")
+	if len(b_id)<1 :
+		tkinter.messagebox.showinfo("Add property","Please renter a Registration number")
 		add_menu.lift()
 		return(add_car)
 
@@ -331,7 +328,7 @@ def add_check():
 
 	pos = binary_search('Bindex.txt', b_id)
 	if pos != -1:
-		tkinter.messagebox.showinfo("Book","Property already present.Please try again")
+		tkinter.messagebox.showinfo("car","Property already present.Please try again")
 		add_menu.lift()
 		return(add_car)
 
@@ -351,7 +348,7 @@ def add_check():
 	add_menu.destroy()
 
 
-def del_book():
+def del_car():
 	global rb_id
 	global del_menu
 
@@ -396,16 +393,16 @@ def del_book():
 		borrow_list4.insert(0,Availability[num])
 
 
-	b_label=Label(del_menu,text="Property ID")
+	b_label=Label(del_menu,text="Car Reg. No.")
 	rb_id=Entry(del_menu)
-	delbutton1=Button(del_menu,command=del_check,text=" Remove property ",bg='dark orange',height=1,width=15,font=k_font)
+	delbutton1=Button(del_menu,command=del_check,text=" Remove Car ",bg='dark orange',height=1,width=15,font=k_font)
 	borrow_list2.configure(background="pink")
 	borrow_list3.configure(background="pink")
 	borrow_list.configure(background="light grey")
 	borrow_list4.configure(background="light grey")
-	borrow_label=Label(del_menu,text="Id")
-	borrow_label2=Label(del_menu,text="Name")
-	borrow_label3=Label(del_menu,text="Location")
+	borrow_label=Label(del_menu,text="Reg. No.")
+	borrow_label2=Label(del_menu,text="Company")
+	borrow_label3=Label(del_menu,text="Model")
 	borrow_label4=Label(del_menu,text="Availability")
 
 	borrow_label.grid(row=6,column=0)
@@ -429,24 +426,24 @@ def del_check():
 	del_id=rb_id.get()
 
 	if len(del_id)==0:
-		tkinter.messagebox.showinfo("Delete Property","You did not type anything O_O")
+		tkinter.messagebox.showinfo("Delete Car","You did not type anything O_O")
 		del_menu.lift()
-		return(del_book)
+		return(del_car)
 
 	pos = binary_search('Bindex.txt', del_id)
 	if(pos == -1):
-		tkinter.messagebox.showinfo("Delete","Property not present.Please reenter")
+		tkinter.messagebox.showinfo("Delete","Car not present.Please reenter")
 		del_menu.destroy()
-		return(del_book)
+		return(del_car)
 	else:
 		f = open ('BData.txt', 'r')
 		f.seek(pos)
 		l1 = f.readline().rstrip()
 		w1 = l1.split('|')
 		if(w1[3] == 'N'):
-			tkinter.messagebox.showinfo("Delete","property currently borrowed. Please try another property")
+			tkinter.messagebox.showinfo("Delete","Car currently borrowed. Please try another Car")
 			del_menu.destroy()
-			return(del_book)
+			return(del_car)
 
 	index = -1
 
@@ -476,17 +473,17 @@ def Main_Menu():
 	base = Tk()
 	#Window title and size optimization
 	base.wm_title("Drive Easy")
-	base.minsize(600,600)
-	base.maxsize(800,700)
+	base.minsize(600,700)
+	base.maxsize(700,800)
 
-	in_font = tkinter.font.Font(family='Lucida Calligraphy', size=10, weight=tkinter.font.BOLD)
+	in_font = tkinter.font.Font(family='Lucida Calligraphy', size=15, weight=tkinter.font.BOLD)
 	current_time1=datetime.datetime.now()
 	current_time=str(current_time1)
 
 	#Bunch of labels
 	status = Label(base,text=("Date and time logged in: " + current_time),bd=1,relief=SUNKEN,anchor=W,bg='light pink')
-	orionLabel=Label(base, text="Drive Easy",bg='plum1',font=("Castellar", "50","bold","italic","underline"),fg="black")
-	welcomeLabel=Label(base,text=("Welcome! "+id),font=("Freestyle Script","50","bold"))
+	orionLabel=Label(base, text="Drive Easy",bg='plum1',font=("Castellar", "30","bold","italic"),fg="black")
+	welcomeLabel=Label(base,text=("Welcome! "+id),font=("Freestyle Script","30","bold"))
 	imageLibrary = PhotoImage(file="bg3.png")
 	topFrame=Frame(base)
 	bottomFrame=Frame(base)
@@ -500,9 +497,9 @@ def Main_Menu():
 	bottomFrame.pack(side=BOTTOM)
 
 	#Buttons
-	borrow_but=Button(bottomFrame,bg="purple4",fg="white",text="Buy Property",font=in_font,height=5,width=17,command=borrow_in)
-	return_but=Button(bottomFrame,bg="plum1",text="Return Property",font=in_font,height=5,width=17,command=return_in)
-	search_but=Button(bottomFrame,bg="purple4",fg="white",text="Search for Property",font=in_font,height=5,width=17,command=search_in)
+	borrow_but=Button(bottomFrame,bg="purple4",fg="white",text="Rent Car",font=in_font,height=5,width=17,command=borrow_in)
+	return_but=Button(bottomFrame,bg="plum1",text="Return Car",font=in_font,height=5,width=17,command=return_in)
+	search_but=Button(bottomFrame,bg="purple4",fg="white",text="Search Car",font=in_font,height=5,width=20,command=search_in)
 	#feedback_but=Button(bottomFrame,bg="dark orange",text="Feedback",font=in_font,height=5,width=15,command=feedback_in)
 
 	#Positioning of buttons
@@ -563,14 +560,14 @@ def borrow_in():
 	borrow_list1.configure(background="light green")
 	borrow_list2.configure(background="light green")
 	borrow_list3.configure(background="light grey")
-	borrow_label1=Label(borrow_menu,text="<<< Please enter the Property ID that you wish to borrow >>>",font=("Times", "20","bold","italic"),bg="light blue")
-	borrow_label=Label(borrow_menu,text="Id")
-	borrow_label2=Label(borrow_menu,text="Name")
-	borrow_label3=Label(borrow_menu,text="Location")
+	borrow_label1=Label(borrow_menu,text="<<< Please enter the Car ID that you wish to borrow >>>",font=("Times", "20","bold","italic"),bg="light blue")
+	borrow_label=Label(borrow_menu,text="Reg. No.")
+	borrow_label2=Label(borrow_menu,text="Company")
+	borrow_label3=Label(borrow_menu,text="Model")
 	borrow_label4=Label(borrow_menu,text="Availability")
 
 	borrow_entry1=Entry(borrow_menu,width=50)
-	borrow_button1=Button(borrow_menu,text="Buy",command=borrow_check,font=("Times new roman","10","bold"),bg="light blue")
+	borrow_button1=Button(borrow_menu,text="Rent",command=borrow_check,font=("Times new roman","10","bold"),bg="light blue")
 
 	borrow_label1.grid(row=0,columnspan=20)
 	borrow_label.grid(row=3,column=0)
@@ -595,22 +592,22 @@ def borrow_check():
 		if l[0] ==  id:
 			count += 1
 	if count >= 3:
-		tkinter.messagebox.showinfo("Borrow", "Cannot have more than 3 property")
+		tkinter.messagebox.showinfo("Borrow", "Cannot have more than 3 Car")
 		borrow_menu.destroy()
 
 	else:
 		date = datetime.date.today()
 		enddate = date + timedelta(days = 7)
-		bbook=borrow_entry1.get().upper()
+		bcar=borrow_entry1.get().upper()
 
-		if len(bbook) == 0:
+		if len(bcar) == 0:
 			tkinter.messagebox.showinfo("Borrow","You did not type anything O_O")
 			borrow_menu.lift()
 			return(borrow_in)
 
-		pos = binary_search('Bindex.txt', bbook)
+		pos = binary_search('Bindex.txt', bcar)
 		if pos == -1:
-			tkinter.messagebox.showinfo("Borrow","The property that you had entered is not in our database,sorry,please enter a different property")
+			tkinter.messagebox.showinfo("Borrow","The Car that you had entered is not in our database,sorry,please enter a different property")
 			borrow_menu.lift()
 		else:
 			f2 = open('BData.txt', 'r+')
@@ -623,21 +620,21 @@ def borrow_check():
 				f2.seek(pos)
 				f2.write(l3)
 				f2.close()
-				tkinter.messagebox.showinfo("Borrow","The property you have selected has been successfully borrowed. Please return it by:" +'\n'+ str(enddate) )
+				tkinter.messagebox.showinfo("Borrow","The car you have selected has been successfully borrowed. Please return it by:" +'\n'+ str(enddate) )
 
-				buf = id + '|' + bbook + '|' + w2[1] + '|$\n'
+				buf = id + '|' + bcar + '|' + w2[1] + '|$\n'
 				f3 = open('Record.txt', 'a')
 				f3.write(buf)
 				f3.close()
 				key_sort('Record.txt')
-				Done2=tkinter.messagebox.askyesno("Borrow","Do you want to borrow another property?")
+				Done2=tkinter.messagebox.askyesno("Borrow","Do you want to borrow another Car?")
 				if Done2==True:
 					borrow_menu.destroy()
 					borrow_in()
 				else:
 					borrow_menu.destroy()
 			else:
-				tkinter.messagebox.showinfo("Borrow","This property is currently unavailable, please select another property")
+				tkinter.messagebox.showinfo("Borrow","This Car is currently unavailable, please select another Car")
 				borrow_menu.lift()
 
 
@@ -694,14 +691,14 @@ def return_in():
 	return_list1.configure(background="light blue")
 	return_list2.configure(background="light blue")
 	return_list3.configure(background="light grey")
-	return_label=Label(return_menu,text="Id")
-	return_label2=Label(return_menu,text="Name")
-	return_label3=Label(return_menu,text="Location")
+	return_label=Label(return_menu,text="Reg. No")
+	return_label2=Label(return_menu,text="Company")
+	return_label3=Label(return_menu,text="Model")
 	return_label4=Label(return_menu,text="Availability")
 
 	return_button1=Button(return_menu,text="Return",command=return_check,font=("Times new roman","10","bold"),bg="dark orange")
 	return_entry1=Entry(return_menu,width=50)
-	return_label1=Label(return_menu,text=" Please enter the property ID that you wish to return ",font=("Times", "12","bold","italic"),bg="light blue")
+	return_label1=Label(return_menu,text=" Please enter the Car Reg. No. that you wish to return ",font=("Times", "12","bold","italic"),bg="light blue")
 	return_label1.grid(row=0,columnspan=20)
 	return_entry1.grid(row=1,columnspan=20)
 	return_button1.grid(row=2,columnspan=20)
@@ -723,22 +720,22 @@ def return_check():
 	import datetime as dt
 	from datetime import timedelta
 	date = dt.date.today()
-	bbook = return_entry1.get().upper()
+	bcar = return_entry1.get().upper()
 
-	if len(bbook) == 0:
+	if len(bcar) == 0:
 		tkinter.messagebox.showinfo("Return","You did not type anything O_O")
 		return_menu.lift()
 		return(return_in)
 
-	if(bbook in record_verification):
-		pos = binary_search('Bindex.txt', bbook)
+	if(bcar in record_verification):
+		pos = binary_search('Bindex.txt', bcar)
 		if pos != -1:
 			f1 = open('BData.txt', 'r+')
 			f1.seek(pos)
 			l1 = f1.readline().rstrip()
 			w1 = l1.split('|')
 			if(w1[3] == 'N'):
-				tkinter.messagebox.showinfo("Return","The property you have selected has been successfully returned on"+'\n'+str(date))
+				tkinter.messagebox.showinfo("Return","The Car you have selected has been successfully returned on"+'\n'+str(date))
 				f1.seek(pos)
 				line = w1[0] + '|' + w1[1] + '|' + w1[2] + '|Y|$'
 				f1.write(line)
@@ -749,12 +746,12 @@ def return_check():
 				f3=open('Record.txt','w')
 				for l2 in lines:
 					l3=l2.split('|')
-					if l3[1] == bbook and l3[0] == id:
+					if l3[1] == bcar and l3[0] == id:
 						continue
 					else:
 						f3.write(l2)
 				f3.close()
-				Done3=tkinter.messagebox.askyesno("Return","Do you want to return another property?")
+				Done3=tkinter.messagebox.askyesno("Return","Do you want to return another car?")
 				if Done3==True:
 					f1.close()
 					return_menu.destroy()
@@ -762,10 +759,10 @@ def return_check():
 				else:
 					return_menu.destroy()
 			else:
-				tkinter.messagebox.showinfo("This property has been returned, please select another property")
+				tkinter.messagebox.showinfo("This Car has been returned, please select another Car")
 			f1.close()
 	else:
-		tkinter.messagebox.showinfo("Return","The property that you had entered is invalid.Please reenter a different property")
+		tkinter.messagebox.showinfo("Return","The Car that you had entered is invalid.Please reenter a different Car")
 		return_menu.lift()
 
 
@@ -779,7 +776,7 @@ def search_in():
 	search_menu.wm_title("Search")
 	search_menu.resizable(0,0)
 
-	search_label1=Label(search_menu,text="Search through our database to check if your desired property is available",font=("Times", "12","bold","italic"),bg="light blue")
+	search_label1=Label(search_menu,text="Search through our database to check if your desired Car is available",font=("Times", "12","bold","italic"),bg="light blue")
 	search_label1.pack(side=TOP)
 
 	search_entry = Entry(search_menu,width=50)
@@ -802,7 +799,7 @@ def search_check():
 	pos = binary_search('Bindex.txt', search_word)
 
 	if (pos == -1):
-		tkinter.messagebox.showinfo("Search","Sorry,this property does not exist in our database")
+		tkinter.messagebox.showinfo("Search","Sorry,this Car does not exist in our database")
 	else:
 		search_menu2=Tk()
 		search_menu2.wm_title("Search")
@@ -816,7 +813,7 @@ def search_check():
 		l1 = l1.rstrip()
 		w1 = l1.split('|')
 		b_id = w1[0]
-		book = w1[1]
+		car = w1[1]
 		author = w1[2]
 		if(w1[3] == 'Y'):
 			availability = 'Available'
@@ -824,69 +821,69 @@ def search_check():
 			availability = 'Unavailable'
 		f2.close()
 
-		search_result.insert(1,"ID:" + b_id)
-		search_result.insert(2,"Name:" + book)
-		search_result.insert(3,"Location:" + author)
+		search_result.insert(1,"Reg. No:" + b_id)
+		search_result.insert(2,"Company:" + car)
+		search_result.insert(3,"Model:" + author)
 		search_result.insert(4,"Availability:" + availability)
 
 		search_result.pack()
 		search_menu2.mainloop()
 
 
-def feedback_in():
-	global feedback_bar
-	global feedback_menu
-	global feedback_input
+# def feedback_in():
+# 	global feedback_bar
+# 	global feedback_menu
+# 	global feedback_input
 
-	feedback_menu=Tk()
-	feedback_menu.wm_title("Feedback")
-	feedback_menu.maxsize(800,200)
-	feedback_menu.resizable(0,0)
+# 	feedback_menu=Tk()
+# 	feedback_menu.wm_title("Feedback")
+# 	feedback_menu.maxsize(800,200)
+# 	feedback_menu.resizable(0,0)
 
-	feedback_bar=Entry(feedback_menu,width=100)
-	feedback_label=Label(feedback_menu,text= "We improve from your valuable feedback.Thank you!",font=("Monotype corsiva","15","italic"),bg="light blue")
-	button1=Button(feedback_menu, text="Submit feedback",command=feedback_check,font=("Times new roman","10","bold"),bg="dark orange")
+# 	feedback_bar=Entry(feedback_menu,width=100)
+# 	feedback_label=Label(feedback_menu,text= "We improve from your valuable feedback.Thank you!",font=("Monotype corsiva","15","italic"),bg="light blue")
+# 	button1=Button(feedback_menu, text="Submit feedback",command=feedback_check,font=("Times new roman","10","bold"),bg="dark orange")
 
-	feedback_bar.pack(side=TOP)
-	feedback_label.pack(side=TOP)
-	button1.pack(side=TOP)
-	feedback_menu.mainloop()
+# 	feedback_bar.pack(side=TOP)
+# 	feedback_label.pack(side=TOP)
+# 	button1.pack(side=TOP)
+# 	feedback_menu.mainloop()
 
-def feedback_check():
-	user_feedback=feedback_bar.get()
-	if len(feedback_bar.get())==0:
-		tkinter.messagebox.showinfo("Feedback","You did not type anything O_O")
-		feedback_menu.lift()
-		return(feedback_in)
-	else:
-		tkinter.messagebox.showinfo("Feedback","Thank you for your valuable feedback! >_<")
-		file = open('Feedback.txt', 'a')
-		file.write(user_feedback + "\n")
-		file.close()
-		feedback_menu.destroy()
+# def feedback_check():
+# 	user_feedback=feedback_bar.get()
+# 	if len(feedback_bar.get())==0:
+# 		tkinter.messagebox.showinfo("Feedback","You did not type anything O_O")
+# 		feedback_menu.lift()
+# 		return(feedback_in)
+# 	else:
+# 		tkinter.messagebox.showinfo("Feedback","Thank you for your valuable feedback! >_<")
+# 		file = open('Feedback.txt', 'a')
+# 		file.write(user_feedback + "\n")
+# 		file.close()
+# 		feedback_menu.destroy()
 
 
-def feedback_read():
-	login_menu.destroy()
-	read_feedback_menu=Tk()
-	read_feedback_menu.minsize=(1000,1000)
-	read_feedback_menu.minsize=(1000,1000)
-	read_feedback_menu.wm_title("Users' feedback")
+# def feedback_read():
+# 	login_menu.destroy()
+# 	read_feedback_menu=Tk()
+# 	read_feedback_menu.minsize=(1000,1000)
+# 	read_feedback_menu.minsize=(1000,1000)
+# 	read_feedback_menu.wm_title("Users' feedback")
 
-	list=Listbox(read_feedback_menu)
-	file = open('Feedback.txt' , 'r')
-	num_feedback = len(file.readlines())
-	file.close()
-	file = open('Feedback.txt' , 'r')
-	count = 1
-	feedback = file.readlines()
-	for i in range(0, num_feedback):
-		list_feedback =str(count) + ('.') + (feedback[count - 1])
-		list.insert(count,list_feedback)
-		count += 1
-	file.close()
+# 	list=Listbox(read_feedback_menu)
+# 	file = open('Feedback.txt' , 'r')
+# 	num_feedback = len(file.readlines())
+# 	file.close()
+# 	file = open('Feedback.txt' , 'r')
+# 	count = 1
+# 	feedback = file.readlines()
+# 	for i in range(0, num_feedback):
+# 		list_feedback =str(count) + ('.') + (feedback[count - 1])
+# 		list.insert(count,list_feedback)
+# 		count += 1
+# 	file.close()
 
-	list.pack(side=LEFT,fill=BOTH,expand=YES)
-	read_feedback_menu.mainloop()
+# 	list.pack(side=LEFT,fill=BOTH,expand=YES)
+# 	read_feedback_menu.mainloop()
 
 login_in()
