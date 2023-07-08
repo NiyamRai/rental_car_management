@@ -16,7 +16,7 @@ def login_in():
 	login_menu=Tk()
 	#login_menu.configure(bg="plum1")
 	login_menu.wm_title("Login")
-	login_menu.geometry('900x500')
+	login_menu.geometry('800x500')
 	login_menu.configure(background='#AFEEEE')
 	login_menu.resizable(True,True)
 	k_font = tkinter.font.Font(family='Times new roman', size=16, weight=tkinter.font.BOLD)
@@ -475,16 +475,17 @@ def del_check():
 def Main_Menu():
 	base = Tk()
 	#Window title and size optimization
-	base.wm_title("Pranav Rahul property dealers")
-	base.minsize(200,200)
+	base.wm_title("Drive Easy")
+	base.minsize(600,600)
+	base.maxsize(800,700)
 
-	in_font = tkinter.font.Font(family='Lucida Calligraphy', size=15, weight=tkinter.font.BOLD)
+	in_font = tkinter.font.Font(family='Lucida Calligraphy', size=10, weight=tkinter.font.BOLD)
 	current_time1=datetime.datetime.now()
 	current_time=str(current_time1)
 
 	#Bunch of labels
 	status = Label(base,text=("Date and time logged in: " + current_time),bd=1,relief=SUNKEN,anchor=W,bg='light pink')
-	orionLabel=Label(base, text="PROPERTY MANAGMENT SYSTEM",bg='plum1',font=("Castellar", "50","bold","italic","underline"),fg="black")
+	orionLabel=Label(base, text="Drive Easy",bg='plum1',font=("Castellar", "50","bold","italic","underline"),fg="black")
 	welcomeLabel=Label(base,text=("Welcome! "+id),font=("Freestyle Script","50","bold"))
 	imageLibrary = PhotoImage(file="bg3.png")
 	topFrame=Frame(base)
