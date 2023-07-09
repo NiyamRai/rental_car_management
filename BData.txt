@@ -17,3 +17,5 @@
 21890|PVR HOUSE|Tr puram, Chennai|Y|$
 br2024|MARUTI|800|Y|$
 2024|MARUTI|800|Y|$
+1238|MAHINDRA|Scorpio|Y|$
+0007|TOYOTA|Fortuner|Y|$

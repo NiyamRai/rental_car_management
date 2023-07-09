@@ -212,7 +212,7 @@ def Admin_Opt():
 		k_font = tkinter.font.Font(family='Times new roman', size=10, weight=tkinter.font.BOLD)
 
 		addbutton=Button(opt_menu,command=add_car,text=" Add Cars ",bg='light green',height=1,width=16,font=k_font)
-		delbutton=Button(opt_menu,command=del_car,text=" Remove property ",bg='pink',height=1,width=12,font=k_font)
+		delbutton=Button(opt_menu,command=del_car,text=" Remove car ",bg='pink',height=1,width=12,font=k_font)
 		backbutton=Button(opt_menu,command=reopen_login,text=" Log out ",bg='light blue',height=1,width=12,font=k_font)
 
 		addbutton.grid(row=4,column=4)
@@ -319,7 +319,7 @@ def add_check():
 		return(add_car)
 
 	if len(b_id)<1 :
-		tkinter.messagebox.showinfo("Add property","Please renter a Registration number")
+		tkinter.messagebox.showinfo("Add car","Please renter a Registration number")
 		add_menu.lift()
 		return(add_car)
 
@@ -328,7 +328,7 @@ def add_check():
 
 	pos = binary_search('Bindex.txt', b_id)
 	if pos != -1:
-		tkinter.messagebox.showinfo("car","Property already present.Please try again")
+		tkinter.messagebox.showinfo("car","car already present.Please try again")
 		add_menu.lift()
 		return(add_car)
 
@@ -344,7 +344,7 @@ def add_check():
 	f33.close()
 	f22.close()
 	key_sort('Bindex.txt')
-	tkinter.messagebox.showinfo("Add","Property added Successfully!")
+	tkinter.messagebox.showinfo("Add","Car added Successfully!")
 	add_menu.destroy()
 
 
